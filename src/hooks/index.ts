@@ -1,0 +1,1 @@
+export {default as useSearchMastodon} from './use-search-mastodon'
