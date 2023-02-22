@@ -7,6 +7,7 @@ export interface MastodonAccount {
     shortcode: string;
     url: string;
   }>;
+  statuses_count: number
 }
 
 export interface MastodonStatus {

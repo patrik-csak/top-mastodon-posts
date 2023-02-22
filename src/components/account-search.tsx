@@ -17,7 +17,7 @@ export default function AccountSearch() {
       <form>
         <label htmlFor="account-search">account</label>
         <input
-          onInput={(event) => setQuery(event.target.value)}
+          onInput={(event) => setQuery((event.target as HTMLInputElement).value)}
           type="search"
           id="account-search"
         />
