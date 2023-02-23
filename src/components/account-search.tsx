@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { useSearchMastodon } from "@/hooks";
 import Link from "next/link";
+import { Card, Input, Loading, User } from "@nextui-org/react";
 
 export default function AccountSearch() {
   const server = "mastodon.social";
 
   const [query, setQuery] = useState<string | undefined>(undefined);
-  const { data, error, isLoading } = useSearchMastodon({
+  const { data, isLoading } = useSearchMastodon({
     query,
     server,
     type: "accounts",
@@ -14,19 +15,33 @@ export default function AccountSearch() {
 
   return (
     <div>
-      <form>
-        <label htmlFor="account-search">account</label>
-        <input
-          onInput={(event) => setQuery((event.target as HTMLInputElement).value)}
+      <form style={{ marginBottom: "1rem" }}>
+        <Input
+          clearable
+          contentRight={isLoading ? <Loading size="xs" /> : null}
+          css={{
+            width: "100%",
+          }}
+          label="Account"
+          onInput={(event) =>
+            setQuery((event.target as HTMLInputElement).value)
+          }
+          placeholder="@georgetakei@universeodon.com"
           type="search"
-          id="account-search"
         />
       </form>
 
       {isLoading ? (
         <p>loading...</p>
       ) : data ? (
-        <ol>
+        <ol
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "1rem",
+            margin: 0,
+          }}
+        >
           {data.accounts.map((account) => {
             let displayName = account.display_name;
             for (const emoji of account.emojis) {
@@ -42,11 +57,21 @@ export default function AccountSearch() {
             const accountName = `@${username}@${accountServer}`;
 
             return (
-              <li key={account.id}>
+              <li key={account.id} style={{ listStyle: "none", margin: 0 }}>
                 <Link href={`/by/${accountName}`}>
-                  <img src={account.avatar} alt="" style={{ width: 46 }} />
-                  <div dangerouslySetInnerHTML={{ __html: displayName }} />
-                  <div>{accountName}</div>
+                  <Card isHoverable isPressable>
+                    <Card.Body>
+                      <User
+                        src={account.avatar}
+                        name={
+                          <span
+                            dangerouslySetInnerHTML={{ __html: displayName }}
+                          />
+                        }
+                        description={accountName}
+                      />
+                    </Card.Body>
+                  </Card>
                 </Link>
               </li>
             );

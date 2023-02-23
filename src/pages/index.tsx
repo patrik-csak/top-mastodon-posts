@@ -1,5 +1,6 @@
-import { AccountSearch } from '@/components'
-import Head from 'next/head'
+import { AccountSearch } from "@/components";
+import Head from "next/head";
+import { Container } from "@nextui-org/react";
 
 export default function Home() {
   return (
@@ -10,10 +11,13 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
       <main>
-        <h1>Mastodon top posts</h1>
-        <AccountSearch />
+        <Container>
+          <h1>Top Mastodon posts</h1>
+          <AccountSearch />
+        </Container>
       </main>
     </>
-  )
+  );
 }
