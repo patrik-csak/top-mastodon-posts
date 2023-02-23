@@ -1,7 +1,19 @@
 import { useState } from "react";
 import { useSearchMastodon } from "@/hooks";
 import Link from "next/link";
-import { Card, Input, Loading, User } from "@nextui-org/react";
+import {
+	Avatar,
+	Card,
+	CardBody,
+	Flex,
+	Heading,
+	Input,
+	InputGroup,
+	InputRightElement,
+	Spinner,
+	Stack,
+	Text,
+} from "@chakra-ui/react";
 
 export default function AccountSearch() {
 	const server = "mastodon.social";
@@ -14,41 +26,40 @@ export default function AccountSearch() {
 	});
 
 	return (
-		<div>
-			<form style={{ marginBottom: "1rem" }}>
-				<Input
-					clearable
-					contentRight={isLoading ? <Loading size="xs" /> : null}
-					css={{
-						width: "100%",
-					}}
-					label="Account"
-					onInput={(event) =>
-						setQuery((event.target as HTMLInputElement).value)
-					}
-					placeholder="e.g. @georgetakei@universeodon.com"
-					type="search"
-				/>
+		<Flex direction="column" gap={4} width="100%">
+			<form>
+				<Stack
+					alignItems={["flex-start", "center"]}
+					direction={["column", "row"]}
+				>
+					<Text as="label" htmlFor="search">
+						Account
+					</Text>
+					<InputGroup>
+						<Input
+							onInput={(event) =>
+								setQuery((event.target as HTMLInputElement).value)
+							}
+							placeholder="e.g. @georgetakei@universeodon.com"
+							type="search"
+						/>
+						{isLoading && (
+							<InputRightElement pointerEvents="none">
+								<Spinner size="sm" />
+							</InputRightElement>
+						)}
+					</InputGroup>
+				</Stack>
 			</form>
 
-			{isLoading ? (
-				<p>loading...</p>
-			) : data ? (
-				<ol
-					style={{
-						display: "flex",
-						flexDirection: "column",
-						gap: "1rem",
-						listStyle: "none",
-						margin: 0,
-					}}
-				>
+			{data && (
+				<Flex as="ol" direction="column" gap={4} listStyleType="none">
 					{data.accounts.map((account) => {
 						let displayName = account.display_name;
 						for (const emoji of account.emojis) {
 							displayName = displayName.replace(
 								`:${emoji.shortcode}:`,
-								`<img src='${emoji.url}' style='height: 1em'/>`
+								`<img alt=":${emoji.shortcode}:" src="${emoji.url}" style="height: 1em"/>`
 							);
 						}
 
@@ -60,25 +71,33 @@ export default function AccountSearch() {
 						return (
 							<li key={account.id}>
 								<Link href={`/by/${accountName}`}>
-									<Card isHoverable isPressable>
-										<Card.Body>
-											<User
-												src={account.avatar}
-												name={
-													<span
+									<Card>
+										<CardBody>
+											<Flex gap={2} alignItems="center">
+												<Avatar name={displayName} src={account.avatar} />
+												<Flex direction="column" gap={1}>
+													<Heading
+														as="h2"
+														size="sm"
+														display="flex"
+														flexDirection="row"
+														alignItems="center"
+														gap={1}
 														dangerouslySetInnerHTML={{ __html: displayName }}
 													/>
-												}
-												description={accountName}
-											/>
-										</Card.Body>
+													<Text fontSize="sm" overflowWrap="break-word">
+														{accountName}
+													</Text>
+												</Flex>
+											</Flex>
+										</CardBody>
 									</Card>
 								</Link>
 							</li>
 						);
 					})}
-				</ol>
-			) : null}
-		</div>
+				</Flex>
+			)}
+		</Flex>
 	);
 }

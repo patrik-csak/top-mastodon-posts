@@ -1,6 +1,6 @@
 import { AccountSearch } from "@/components";
 import Head from "next/head";
-import { Container, Text } from "@nextui-org/react";
+import { Container, Text, VStack } from "@chakra-ui/react";
 
 export default function Home() {
 	return (
@@ -12,15 +12,12 @@ export default function Home() {
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 
-			<main>
-				<Container
-					css={{ display: "flex", flexDirection: "column", gap: "$12" }}
-				>
-					<Text h1>Top Mastodon posts</Text>
-					<Text>See a Mastodon account&rsquo;s most favo(u)rited posts</Text>
+			<Container>
+				<VStack align="flex-start" gap={4}>
+					<Text>See a Mastodon account&rsquo;s most-favo(u)rited posts</Text>
 					<AccountSearch />
-				</Container>
-			</main>
+				</VStack>
+			</Container>
 		</>
 	);
 }

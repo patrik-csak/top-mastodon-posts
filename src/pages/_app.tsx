@@ -1,25 +1,18 @@
-import { NextUIProvider } from "@nextui-org/react";
 import type { AppProps } from "next/app";
-import { ThemeProvider as NextThemesProvider } from "next-themes";
-import { themes } from "@/library/client";
 import { Analytics } from "@vercel/analytics/react";
+import { ChakraProvider } from "@chakra-ui/react";
+import { Layout } from "@/components";
 
 import "@/styles/globals.css";
 
 export default function App({ Component, pageProps }: AppProps) {
 	return (
 		<>
-			<NextThemesProvider
-				attribute="class"
-				value={{
-					dark: themes.dark.className,
-					light: themes.light.className,
-				}}
-			>
-				<NextUIProvider>
+			<ChakraProvider>
+				<Layout>
 					<Component {...pageProps} />
-				</NextUIProvider>
-			</NextThemesProvider>
+				</Layout>
+			</ChakraProvider>
 
 			<Analytics />
 		</>
