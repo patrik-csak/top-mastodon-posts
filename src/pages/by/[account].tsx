@@ -3,6 +3,7 @@ import Script from "next/script";
 import { useRouter } from "next/router";
 import { useMastodonAccount, useTopMastodonStatuses } from "@/hooks";
 import { useEffect } from "react";
+import { Card, Container, Grid, Progress, Text } from "@nextui-org/react";
 
 const TopPosts: NextPage = () => {
   const router = useRouter();
@@ -35,32 +36,49 @@ const TopPosts: NextPage = () => {
     <>
       <Script src="/scripts/mastodon-embed.js" />
 
-      <h1>
-        {account?.display_name ?? `@${username}@${server}`}&rsquo;s top Mastodon
-        posts
-      </h1>
+      <Container>
+        <Text h1>
+          Top Mastodon posts by{" "}
+          {account?.display_name ?? `@${username}@${server}`}
+        </Text>
 
-      <progress
-        aria-label={`Loading posts (${humanReadableTopStatusesLoadingProgress})`}
-        id="progress-bar"
-        max={1}
-        value={topStatusesLoadingProgress}
-      />
+        {isLoadingStatuses && (
+          <div style={{ alignItems: "center", display: "flex", gap: "1rem" }}>
+            <Text>Loading</Text>
+            <Progress
+              aria-label={`Loading posts (${humanReadableTopStatusesLoadingProgress})`}
+              id="progress-bar"
+              indeterminated={topStatusesLoadingProgress === undefined}
+              max={1}
+              value={topStatusesLoadingProgress}
+            />
+          </div>
+        )}
 
-      <ol aria-busy={isLoadingStatuses} aria-describedby="progress-bar">
-        {!isLoadingStatuses &&
-          statuses &&
-          statuses.map((status) => (
-            <li key={status.id}>
-              <iframe
-                allow="fullscreen"
-                className="mastodon-embed"
-                src={`https://${server}/@${username}/${status.id}/embed`}
-                style={{ border: 0, maxWidth: "100%", width: 400 }}
-              />
-            </li>
-          ))}
-      </ol>
+        <Grid.Container
+          aria-busy={isLoadingStatuses}
+          aria-describedby="progress-bar"
+          as="ol"
+          gap={2}
+        >
+          {!isLoadingStatuses &&
+            statuses &&
+            statuses.map((status) => (
+              <Grid as="li" key={status.id} xs={12} sm={6} md={4} alignItems='flex-start'>
+                <Card css={{ backgroundColor: "#313543" }}>
+                  <Card.Body css={{ padding: "$5" }}>
+                    <iframe
+                      allow="fullscreen"
+                      className="mastodon-embed"
+                      src={`https://${server}/@${username}/${status.id}/embed`}
+                      style={{ border: 0, maxWidth: "100%" }}
+                    />
+                  </Card.Body>
+                </Card>
+              </Grid>
+            ))}
+        </Grid.Container>
+      </Container>
     </>
   );
 };

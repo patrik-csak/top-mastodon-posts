@@ -39,6 +39,7 @@ export default function AccountSearch() {
             display: "flex",
             flexDirection: "column",
             gap: "1rem",
+            listStyle: 'none',
             margin: 0,
           }}
         >
@@ -57,7 +58,7 @@ export default function AccountSearch() {
             const accountName = `@${username}@${accountServer}`;
 
             return (
-              <li key={account.id} style={{ listStyle: "none", margin: 0 }}>
+              <li key={account.id}>
                 <Link href={`/by/${accountName}`}>
                   <Card isHoverable isPressable>
                     <Card.Body>
