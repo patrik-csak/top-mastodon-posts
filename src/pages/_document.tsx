@@ -1,13 +1,35 @@
-import { Html, Head, Main, NextScript } from 'next/document'
+import { CssBaseline } from "@nextui-org/react";
+import NextDocument, {
+  Html,
+  Head,
+  Main,
+  NextScript,
+  DocumentContext,
+  DocumentInitialProps,
+} from "next/document";
+import React from "react";
 
-export default function Document() {
-  return (
-    <Html lang="en">
-      <Head />
-      <body>
-        <Main />
-        <NextScript />
-      </body>
-    </Html>
-  )
+export default class Document extends NextDocument {
+  static async getInitialProps(
+    context: DocumentContext
+  ): Promise<DocumentInitialProps> {
+    const initialProps = await NextDocument.getInitialProps(context);
+
+    return {
+      ...initialProps,
+      styles: React.Children.toArray([initialProps.styles]),
+    };
+  }
+
+  render() {
+    return (
+      <Html lang="en">
+        <Head>{CssBaseline.flush()}</Head>
+        <body>
+          <Main />
+          <NextScript />
+        </body>
+      </Html>
+    );
+  }
 }

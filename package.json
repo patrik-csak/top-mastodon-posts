@@ -9,17 +9,15 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@next/font": "13.1.6",
     "@nextui-org/react": "^1.0.0-beta.12",
     "@types/node": "18.14.0",
     "@types/react": "18.0.28",
     "@types/react-dom": "18.0.11",
     "eslint": "8.34.0",
     "eslint-config-next": "13.1.6",
-    "got": "^12.5.3",
-    "iframe-resizer-react": "^1.1.0",
     "ky": "^0.33.2",
     "next": "13.1.6",
+    "next-themes": "^0.2.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "swr": "^2.0.3",
