@@ -36,7 +36,7 @@ const TopPosts: NextPage = () => {
     <>
       <Script src="/scripts/mastodon-embed.js" />
 
-      <Container>
+      <Container css={{ display: "flex", flexDirection: "column", gap: "$12" }}>
         <Text h1>
           Top Mastodon posts by{" "}
           {account?.display_name ?? `@${username}@${server}`}
@@ -64,7 +64,14 @@ const TopPosts: NextPage = () => {
           {!isLoadingStatuses &&
             statuses &&
             statuses.map((status) => (
-              <Grid as="li" key={status.id} xs={12} sm={6} md={4} alignItems='flex-start'>
+              <Grid
+                as="li"
+                key={status.id}
+                xs={12}
+                sm={6}
+                md={4}
+                alignItems="flex-start"
+              >
                 <Card css={{ backgroundColor: "#313543" }}>
                   <Card.Body css={{ padding: "$5" }}>
                     <iframe

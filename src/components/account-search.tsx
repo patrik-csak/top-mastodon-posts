@@ -26,7 +26,7 @@ export default function AccountSearch() {
           onInput={(event) =>
             setQuery((event.target as HTMLInputElement).value)
           }
-          placeholder="@georgetakei@universeodon.com"
+          placeholder="e.g. @georgetakei@universeodon.com"
           type="search"
         />
       </form>

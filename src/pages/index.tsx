@@ -1,6 +1,6 @@
 import { AccountSearch } from "@/components";
 import Head from "next/head";
-import { Container } from "@nextui-org/react";
+import { Container, Text } from "@nextui-org/react";
 
 export default function Home() {
   return (
@@ -13,8 +13,11 @@ export default function Home() {
       </Head>
 
       <main>
-        <Container>
-          <h1>Top Mastodon posts</h1>
+        <Container
+          css={{ display: "flex", flexDirection: "column", gap: "$12" }}
+        >
+          <Text h1>Top Mastodon posts</Text>
+          <Text>See a Mastodon account&rsquo;s most favo(u)rited posts</Text>
           <AccountSearch />
         </Container>
       </main>
