@@ -6,64 +6,64 @@ import useMastodonAccount from "./use-mastodon-account";
 const limit = 40;
 
 export default function useMastodonStatuses({
-  server,
-  username,
+	server,
+	username,
 }: {
-  server: string | undefined;
-  username: string | undefined;
+	server: string | undefined;
+	username: string | undefined;
 }) {
-  const { account } = useMastodonAccount({
-    server,
-    username,
-  });
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+	const { account } = useMastodonAccount({
+		server,
+		username,
+	});
+	const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const [statuses, setStatuses] = useState<MastodonStatus[] | undefined>(
-    undefined
-  );
-  useEffect(() => {
-    async function getStatuses() {
-      if (!account) return;
+	const [statuses, setStatuses] = useState<MastodonStatus[] | undefined>(
+		undefined
+	);
+	useEffect(() => {
+		async function getStatuses() {
+			if (!account) return;
 
-      setIsLoading(true);
+			setIsLoading(true);
 
-      let maxId: string | undefined = undefined;
-      let moreStatuses: MastodonStatus[];
-      let shouldGetMore = true;
+			let maxId: string | undefined = undefined;
+			let moreStatuses: MastodonStatus[];
+			let shouldGetMore = true;
 
-      while (shouldGetMore) {
-        const searchParams: SearchParamsOption = {
-          exclude_reblogs: 1,
-          limit,
-        };
+			while (shouldGetMore) {
+				const searchParams: SearchParamsOption = {
+					exclude_reblogs: 1,
+					limit,
+				};
 
-        if (maxId) searchParams.max_id = maxId;
+				if (maxId) searchParams.max_id = maxId;
 
-        moreStatuses = await ky(
-          `https://${server}/api/v1/accounts/${account.id}/statuses`,
-          {
-            searchParams,
-          }
-        ).json<MastodonStatus[]>();
+				moreStatuses = await ky(
+					`https://${server}/api/v1/accounts/${account.id}/statuses`,
+					{
+						searchParams,
+					}
+				).json<MastodonStatus[]>();
 
-        setStatuses((statuses) => [...(statuses ?? []), ...moreStatuses]);
+				setStatuses((statuses) => [...(statuses ?? []), ...moreStatuses]);
 
-        shouldGetMore = moreStatuses.length === limit;
-        if (shouldGetMore) maxId = moreStatuses[moreStatuses.length - 1].id;
-      }
+				shouldGetMore = moreStatuses.length === limit;
+				if (shouldGetMore) maxId = moreStatuses[moreStatuses.length - 1].id;
+			}
 
-      setIsLoading(false);
-    }
+			setIsLoading(false);
+		}
 
-    getStatuses();
-  }, [account, server]);
+		getStatuses();
+	}, [account, server]);
 
-  const [progress, setProgress] = useState<number | undefined>(undefined);
-  useEffect(() => {
-    if (account && statuses) {
-      setProgress(isLoading ? statuses.length / account.statuses_count : 1);
-    }
-  }, [account, isLoading, statuses]);
+	const [progress, setProgress] = useState<number | undefined>(undefined);
+	useEffect(() => {
+		if (account && statuses) {
+			setProgress(isLoading ? statuses.length / account.statuses_count : 1);
+		}
+	}, [account, isLoading, statuses]);
 
-  return { isLoading, progress, statuses };
+	return { isLoading, progress, statuses };
 }

@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint && prettier --check .",
+    "format": "prettier --write ."
   },
   "dependencies": {
     "@nextui-org/react": "^1.0.0-beta.12",
@@ -23,5 +24,9 @@
     "react-dom": "18.2.0",
     "swr": "^2.0.3",
     "typescript": "4.9.5"
+  },
+  "devDependencies": {
+    "eslint-config-prettier": "^8.6.0",
+    "prettier": "2.8.4"
   }
 }
