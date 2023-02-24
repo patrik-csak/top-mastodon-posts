@@ -43,7 +43,7 @@ const TopPosts: NextPage = () => {
 			<Container>
 				<Flex direction="column" gap={8}>
 					<Heading as="h2" size="lg">
-						Top Mastodon posts by{" "}
+						Most-favo(u)rited Mastodon posts by{" "}
 						{account?.display_name ?? `@${username}@${server}`}
 					</Heading>
 
