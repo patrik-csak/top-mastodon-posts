@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:favicons": "scripts/build-favicons.sh",
     "start": "next start",
     "lint": "next lint && prettier --check .",
     "format": "prettier --write ."
