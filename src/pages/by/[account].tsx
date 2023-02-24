@@ -14,6 +14,7 @@ import {
 	SimpleGrid,
 	Text,
 } from "@chakra-ui/react";
+import { MastodonDisplayName } from "@/components";
 
 const TopPosts: NextPage = () => {
 	const router = useRouter();
@@ -44,7 +45,11 @@ const TopPosts: NextPage = () => {
 				<Flex direction="column" gap={8}>
 					<Heading as="h2" size="lg">
 						Most-favo(u)rited Mastodon posts by{" "}
-						{account?.display_name ?? `@${username}@${server}`}
+						{account ? (
+							<MastodonDisplayName account={account} />
+						) : (
+							`@${username}@${server}`
+						)}
 					</Heading>
 
 					{isLoadingStatuses && (

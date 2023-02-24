@@ -14,6 +14,7 @@ import {
 	Stack,
 	Text,
 } from "@chakra-ui/react";
+import { MastodonDisplayName } from "@/components/index";
 
 export default function AccountSearch() {
 	const server = "mastodon.social";
@@ -55,14 +56,6 @@ export default function AccountSearch() {
 			{data && (
 				<Flex as="ol" direction="column" gap={4} listStyleType="none">
 					{data.accounts.map((account) => {
-						let displayName = account.display_name;
-						for (const emoji of account.emojis) {
-							displayName = displayName.replace(
-								`:${emoji.shortcode}:`,
-								`<img alt=":${emoji.shortcode}:" src="${emoji.url}" style="height: 1em"/>`
-							);
-						}
-
 						let [username, accountServer] = account.acct.split("@");
 						accountServer = accountServer ?? server;
 
@@ -74,7 +67,10 @@ export default function AccountSearch() {
 									<Card>
 										<CardBody>
 											<Flex gap={2} alignItems="center">
-												<Avatar name={displayName} src={account.avatar} />
+												<Avatar
+													name={account.display_name}
+													src={account.avatar}
+												/>
 												<Flex direction="column" gap={1}>
 													<Heading
 														as="h2"
@@ -83,8 +79,9 @@ export default function AccountSearch() {
 														flexDirection="row"
 														alignItems="center"
 														gap={1}
-														dangerouslySetInnerHTML={{ __html: displayName }}
-													/>
+													>
+														<MastodonDisplayName account={account} />
+													</Heading>
 													<Text fontSize="sm" overflowWrap="break-word">
 														{accountName}
 													</Text>
