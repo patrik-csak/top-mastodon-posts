@@ -1,9 +1,12 @@
 import { AccountSearch } from "@/components";
 import Head from "next/head";
 import { Container, Text, VStack } from "@chakra-ui/react";
+import { decodeHTML } from "entities";
 
 const title = "Top Mastodon Posts";
-const description = "See a Mastodon account&rsquo;s most-favo(u)rited posts";
+const description = decodeHTML(
+	"See a Mastodon account&rsquo;s most-favo(u)rited posts"
+);
 
 export default function Home() {
 	return (
