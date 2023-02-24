@@ -15,6 +15,8 @@ import {
 	Text,
 } from "@chakra-ui/react";
 import { MastodonDisplayName } from "@/components";
+import Head from "next/head";
+import { appName, separator } from "@/library";
 
 const TopPosts: NextPage = () => {
 	const router = useRouter();
@@ -37,19 +39,27 @@ const TopPosts: NextPage = () => {
 		}
 	}, [isLoadingStatuses, statuses]);
 
+	const title = account
+		? [account.display_name, separator, appName].join(" ")
+		: appName;
+
 	return (
 		<>
+			<Head>
+				<title>{title}</title>
+				<meta
+					name="description"
+					content={`Most favo(u)rited Mastodon posts by ${accountName}`}
+				/>
+			</Head>
+
 			<Script src="/scripts/mastodon-embed.js" />
 
 			<Container>
 				<Flex direction="column" gap={8}>
 					<Heading as="h2" size="lg">
 						Most-favo(u)rited Mastodon posts by{" "}
-						{account ? (
-							<MastodonDisplayName account={account} />
-						) : (
-							`@${username}@${server}`
-						)}
+						{account ? <MastodonDisplayName account={account} /> : accountName}
 					</Heading>
 
 					{isLoadingStatuses && (
@@ -86,7 +96,6 @@ const TopPosts: NextPage = () => {
 											allow="fullscreen"
 											className="mastodon-embed"
 											src={`https://${server}/@${username}/${status.id}/embed`}
-											// style={{ border: 0, maxWidth: "100%" }}
 											width="100%"
 										/>
 									</CardBody>

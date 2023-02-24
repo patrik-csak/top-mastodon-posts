@@ -9,6 +9,7 @@ import {
 	useColorModeValue,
 } from "@chakra-ui/react";
 import NextLink from "next/link";
+import { appName } from "@/library";
 
 export default function Layout({ children }: { children: ReactElement }) {
 	const alternateBackgroundColor = useColorModeValue("gray.100", "gray.700");
@@ -23,7 +24,7 @@ export default function Layout({ children }: { children: ReactElement }) {
 			>
 				<Container>
 					<NextLink href="/">
-						<Heading as="h1">🔝🐘 Top Mastodon Posts</Heading>
+						<Heading as="h1">🔝🐘 {appName}</Heading>
 					</NextLink>
 				</Container>
 			</Box>
