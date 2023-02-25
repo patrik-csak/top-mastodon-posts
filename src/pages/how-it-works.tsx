@@ -18,8 +18,8 @@ const HowItWorks: NextPage = () => (
 
 				<Text>
 					This website makes unauthenticated HTTP requests to public Mastodon
-					APIs. All HTTP requests are made from your browser, aka client. There
-					is no backend, database, caching, logging, or analytics
+					APIs. All HTTP requests are made from your browser. There is no
+					backend, database, caching, logging, or analytics.
 				</Text>
 
 				<Spacer />
@@ -30,10 +30,11 @@ const HowItWorks: NextPage = () => (
 
 				<Text>
 					When you view an account&rsquo;s top posts at{" "}
-					<Code>{"/by/@{username}/{server}"}</Code>, this website makes a series
-					of unauthenticated HTTP requests to <Code>{"{server}"}</Code>&rsquo;s
-					public API to get all of <Code>{"{username}"}</Code>&rsquo;s posts,
-					then sorts them by <Code>favourite_count</Code> descending.
+					<Code>{"/by/@{username}/{server}"}</Code>, your browser makes HTTP
+					requests to <Code>{"{server}"}</Code>&rsquo;s public API to get all of{" "}
+					<Code>{"{username}"}</Code>&rsquo;s posts, sorts them by{" "}
+					<Code>favourite_count</Code> descending, then displays the top 20
+					most-favo(u)rited posts.
 				</Text>
 
 				<Text>
@@ -47,7 +48,7 @@ const HowItWorks: NextPage = () => (
 					>
 						@georgetakei@universeodon.com
 					</ChakraLink>
-					, this website will make requests to{" "}
+					, your browser will make requests to{" "}
 					<ChakraLink
 						href="https://universeodon.com/api/v1/accounts/109349320508690443/statuses"
 						fontWeight="bold"
@@ -75,7 +76,7 @@ const HowItWorks: NextPage = () => (
 					>
 						search for an account
 					</ChakraLink>
-					, this website sends a public unauthenticated request to{" "}
+					, your browser makes requests requests to{" "}
 					<ChakraLink
 						href="https://mastodon.social/"
 						fontWeight="bold"
@@ -84,7 +85,7 @@ const HowItWorks: NextPage = () => (
 					>
 						mastodon.social
 					</ChakraLink>
-					, e.g.{" "}
+					&rsquo;s public search endpoint, e.g.{" "}
 					<ChakraLink
 						href="https://mastodon.social/api/v2/search?q=georgetakei"
 						fontWeight="bold"
