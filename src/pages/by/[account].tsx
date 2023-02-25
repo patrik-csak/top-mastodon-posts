@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import { useMastodonAccount, useTopMastodonStatuses } from "@/hooks";
 import { useEffect } from "react";
 import {
+	Box,
 	Card,
 	CardBody,
 	Container,
@@ -89,12 +90,14 @@ const TopPosts: NextPage = () => {
 									backgroundColor="#313543"
 									size="sm"
 								>
-									<CardBody>
-										<iframe
+									<CardBody display='flex'>
+										<Box
 											allow="fullscreen"
+											as='iframe'
+											border={0}
 											className="mastodon-embed"
 											src={`https://${server}/@${username}/${status.id}/embed`}
-											style={{ border: "0", maxWidth: "100%", width: 400 }}
+											width='100%'
 										/>
 									</CardBody>
 								</Card>

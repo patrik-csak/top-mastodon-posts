@@ -25,7 +25,9 @@ export default function Layout({ children }: { children: ReactElement }) {
 			>
 				<Container>
 					<NextLink href="/">
-						<Heading as="h1">🔝🐘 {appName}</Heading>
+						<Heading as="h1" size="lg">
+							🔝🐘 {appName}
+						</Heading>
 					</NextLink>
 				</Container>
 			</Box>
