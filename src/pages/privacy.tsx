@@ -9,8 +9,8 @@ const Privacy: NextPage = () => (
 
 				<Text>
 					This website retains no data. It has no backend, database, caching,
-					logging, or analytics. All HTTP requests are made from your browser to
-					public Mastodon API endpoints with no authentication.
+					logging, analytics, or ads. All HTTP requests are made from your
+					browser to public Mastodon API endpoints.
 				</Text>
 			</Flex>
 		</Container>

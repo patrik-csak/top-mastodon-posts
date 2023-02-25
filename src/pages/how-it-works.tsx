@@ -16,12 +16,6 @@ const HowItWorks: NextPage = () => (
 			<Flex direction="column" gap={4}>
 				<Heading as="h2">How It Works</Heading>
 
-				<Text>
-					This website makes unauthenticated HTTP requests to public Mastodon
-					APIs. All HTTP requests are made from your browser. There is no
-					backend, database, caching, logging, or analytics.
-				</Text>
-
 				<Spacer />
 
 				<Heading as="h3" size="lg">
@@ -30,11 +24,10 @@ const HowItWorks: NextPage = () => (
 
 				<Text>
 					When you view an account&rsquo;s top posts at{" "}
-					<Code>{"/by/@{username}/{server}"}</Code>, your browser makes HTTP
-					requests to <Code>{"{server}"}</Code>&rsquo;s public API to get all of{" "}
-					<Code>{"{username}"}</Code>&rsquo;s posts, sorts them by{" "}
-					<Code>favourite_count</Code> descending, then displays the top 20
-					most-favo(u)rited posts.
+					<Code>{"/by/@{username}/{server}"}</Code>, your browser makes requests
+					to <Code>{"{server}"}</Code>&rsquo;s public API to get all public
+					posts by that account, sorts them by <Code>favourite_count</Code>{" "}
+					descending, then displays the top 20 most-favo(u)rited posts.
 				</Text>
 
 				<Text>
