@@ -5,11 +5,12 @@ import {
 	Flex,
 	Heading,
 	Link as ChakraLink,
+	Show,
 	Text,
 	useColorModeValue,
 } from "@chakra-ui/react";
 import NextLink from "next/link";
-import { appName } from "@/library";
+import { appName, separator } from "@/library";
 
 export default function Layout({ children }: { children: ReactElement }) {
 	const alternateBackgroundColor = useColorModeValue("gray.100", "gray.700");
@@ -40,17 +41,43 @@ export default function Layout({ children }: { children: ReactElement }) {
 				paddingY={4}
 			>
 				<Container>
-					<Text>
-						By{" "}
+					<Flex direction={["column", "row"]} gap={4}>
+						<Text>
+							By{" "}
+							<ChakraLink
+								href="https://www.patrikcsak.com/"
+								fontWeight="bold"
+								textDecoration="underline"
+								textUnderlineOffset={2}
+							>
+								Patrik Csak
+							</ChakraLink>
+						</Text>
+
+						<Show above="sm">{separator}</Show>
+
 						<ChakraLink
-							href="https://www.patrikcsak.com/"
+							as={NextLink}
+							href="/how-it-works"
 							fontWeight="bold"
 							textDecoration="underline"
 							textUnderlineOffset={2}
 						>
-							Patrik Csak
+							How It Works
 						</ChakraLink>
-					</Text>
+
+						<Show above="sm">{separator}</Show>
+
+						<ChakraLink
+							as={NextLink}
+							href="/privacy"
+							fontWeight="bold"
+							textDecoration="underline"
+							textUnderlineOffset={2}
+						>
+							Privacy
+						</ChakraLink>
+					</Flex>
 				</Container>
 			</Box>
 		</Flex>
