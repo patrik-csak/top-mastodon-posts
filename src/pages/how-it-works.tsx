@@ -6,6 +6,7 @@ import {
 	Text,
 	Link as ChakraLink,
 	Code,
+	Spacer,
 } from "@chakra-ui/react";
 import NextLink from "next/link";
 
@@ -17,14 +18,11 @@ const HowItWorks: NextPage = () => (
 
 				<Text>
 					This website makes unauthenticated HTTP requests to public Mastodon
-					APIs
+					APIs. All HTTP requests are made from your browser, aka client. There
+					is no backend, database, caching, logging, or analytics
 				</Text>
 
-				<Text>All HTTP requests are made from your browser, aka client</Text>
-
-				<Text>
-					There is no backend, database, caching, logging, or analytics
-				</Text>
+				<Spacer />
 
 				<Heading as="h3" size="lg">
 					Top Posts
@@ -59,6 +57,8 @@ const HowItWorks: NextPage = () => (
 						https://universeodon.com/api/v1/accounts/109349320508690443/statuses
 					</ChakraLink>
 				</Text>
+
+				<Spacer />
 
 				<Heading as="h3" size="lg">
 					Search
@@ -103,6 +103,24 @@ const HowItWorks: NextPage = () => (
 						mastodon.social&rsquo;s search page
 					</ChakraLink>{" "}
 					uses.
+				</Text>
+
+				<Spacer />
+
+				<Heading as="h3" size="lg">
+					Source Code
+				</Heading>
+
+				<Text>
+					Source code is available on GitHub at{" "}
+					<ChakraLink
+						href="https://github.com/patrik-csak/top-mastodon-posts"
+						fontWeight="bold"
+						textDecoration="underline"
+						textUnderlineOffset={2}
+					>
+						patrik-csak / top-mastodon-posts
+					</ChakraLink>{" "}
 				</Text>
 			</Flex>
 		</Container>
