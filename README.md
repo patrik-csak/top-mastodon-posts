@@ -1,4 +1,4 @@
-# [🔝🐘 Top Mastodon Posts](http://www.topmastodonposts.com/)
+# [🔝🦣 Top Mastodon Posts](http://www.topmastodonposts.com/)
 
 See a Mastodon account&rsquo;s most-favo(u)rited posts
 
