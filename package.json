@@ -1,7 +1,10 @@
 {
-  "name": "mastodon-top-posts",
-  "version": "0.1.0",
-  "private": true,
+  "name": "@patrik-csak/top-mastodon-posts",
+  "description": "React app to see a Mastodon account's most-favo(u)rited posts",
+  "homepage": "https://topmastodonposts.com",
+  "license": "UNLICENSED",
+  "author": "Patrik Csak <p@trikcsak.com> (https://patrikcsak.com)",
+  "repository": "github:patrik-csak/top-mastodon-posts",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -31,5 +34,6 @@
   "devDependencies": {
     "eslint-config-prettier": "^8.6.0",
     "prettier": "2.8.4"
-  }
+  },
+  "private": true
 }
