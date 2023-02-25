@@ -65,6 +65,7 @@ const TopPosts: NextPage = () => {
 					<Heading as="h2" size="lg">
 						Most-favo(u)rited Mastodon posts by{" "}
 						{account ? <MastodonDisplayName account={account} /> : accountName}
+						{account ? `(${accountName})` : null}
 					</Heading>
 
 					{isLoadingStatuses && (
