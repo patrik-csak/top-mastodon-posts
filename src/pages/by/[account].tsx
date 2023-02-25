@@ -90,14 +90,14 @@ const TopPosts: NextPage = () => {
 									backgroundColor="#313543"
 									size="sm"
 								>
-									<CardBody display='flex'>
+									<CardBody display="flex">
 										<Box
 											allow="fullscreen"
-											as='iframe'
+											as="iframe"
 											border={0}
 											className="mastodon-embed"
 											src={`https://${server}/@${username}/${status.id}/embed`}
-											width='100%'
+											width="100%"
 										/>
 									</CardBody>
 								</Card>
