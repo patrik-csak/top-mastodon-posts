@@ -12,7 +12,7 @@ export default function useMastodonStatuses({
 	server: string | undefined;
 	username: string | undefined;
 }) {
-	const { account } = useMastodonAccount({
+	const { account, error: accountError } = useMastodonAccount({
 		server,
 		username,
 	});
@@ -65,5 +65,5 @@ export default function useMastodonStatuses({
 		}
 	}, [account, isLoading, statuses]);
 
-	return { isLoading, progress, statuses };
+	return { error: accountError, isLoading, progress, statuses };
 }

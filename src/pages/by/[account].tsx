@@ -4,6 +4,10 @@ import { useRouter } from "next/router";
 import { useMastodonAccount, useTopMastodonStatuses } from "@/hooks";
 import { useEffect } from "react";
 import {
+	Alert,
+	AlertDescription,
+	AlertIcon,
+	AlertTitle,
 	Box,
 	Card,
 	CardBody,
@@ -27,8 +31,9 @@ const TopPosts: NextPage = () => {
 	const { account } = useMastodonAccount({ server, username });
 
 	const {
+		error: statusesError,
 		isLoading: isLoadingStatuses,
-		progress: topStatusesLoadingProgress,
+		progress: statusesLoadingProgress,
 		topStatuses: statuses,
 	} = useTopMastodonStatuses({ server, username });
 
@@ -68,11 +73,19 @@ const TopPosts: NextPage = () => {
 							<Progress
 								flexGrow={1}
 								height={4}
-								isIndeterminate={topStatusesLoadingProgress === undefined}
+								isIndeterminate={statusesLoadingProgress === undefined}
 								max={1}
-								value={topStatusesLoadingProgress}
+								value={statusesLoadingProgress}
 							/>
 						</Flex>
+					)}
+
+					{statusesError && (
+						<Alert status="error">
+							<AlertIcon />
+							<AlertTitle>Failed to get posts</AlertTitle>
+							<AlertDescription>{statusesError.message}</AlertDescription>
+						</Alert>
 					)}
 
 					<SimpleGrid

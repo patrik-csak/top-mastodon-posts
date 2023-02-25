@@ -13,5 +13,5 @@ export default function useMastodonAccount({
 		type: "accounts",
 	});
 
-	return { account: data?.accounts[0], error, isLoading };
+	return { account: data?.accounts?.[0], error, isLoading };
 }
