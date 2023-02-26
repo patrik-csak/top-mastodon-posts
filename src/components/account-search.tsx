@@ -14,7 +14,7 @@ import {
 	Stack,
 	Text,
 } from "@chakra-ui/react";
-import { MastodonDisplayName } from "@/components/index";
+import { MastodonDisplayName } from "@/components";
 
 export default function AccountSearch() {
 	const server = "mastodon.social";
