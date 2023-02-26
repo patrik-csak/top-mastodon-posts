@@ -1,14 +1,7 @@
 import { NextPage } from "next";
-import {
-	Container,
-	Flex,
-	Heading,
-	Text,
-	Link as ChakraLink,
-	Code,
-	Spacer,
-} from "@chakra-ui/react";
-import NextLink from "next/link";
+import { Container, Flex, Heading, Text, Code, Spacer } from "@chakra-ui/react";
+import { InlineLink } from "@/components";
+import { apostrophe } from "@/library";
 
 const HowItWorks: NextPage = () => (
 	<>
@@ -23,33 +16,34 @@ const HowItWorks: NextPage = () => (
 				</Heading>
 
 				<Text>
-					When you view an account&rsquo;s top posts at{" "}
+					When you view an account{apostrophe}s top posts at{" "}
 					<Code>{"/by/@{username}/{server}"}</Code>, your browser makes requests
-					to <Code>{"{server}"}</Code>&rsquo;s public API to get all public
-					posts by that account, sorts them by <Code>favourite_count</Code>{" "}
-					descending, then displays the top 20 most-favo(u)rited posts.
+					to <Code>{"{server}"}</Code>
+					{apostrophe}s public API to get all public posts by that account,
+					sorts them by <Code>favourite_count</Code> descending, then displays
+					the top 20 most-favo(u)rited posts.
 				</Text>
 
 				<Text>
 					For example, for{" "}
-					<ChakraLink
-						as={NextLink}
+					<InlineLink
 						href="/by/@georgetakei@universeodon.com"
 						fontWeight="bold"
 						textDecoration="underline"
 						textUnderlineOffset={2}
+						useNextLink
 					>
 						@georgetakei@universeodon.com
-					</ChakraLink>
+					</InlineLink>
 					, your browser will make requests to{" "}
-					<ChakraLink
+					<InlineLink
 						href="https://universeodon.com/api/v1/accounts/109349320508690443/statuses"
 						fontWeight="bold"
 						textDecoration="underline"
 						textUnderlineOffset={2}
 					>
 						https://universeodon.com/api/v1/accounts/109349320508690443/statuses
-					</ChakraLink>
+					</InlineLink>
 				</Text>
 
 				<Spacer />
@@ -60,42 +54,42 @@ const HowItWorks: NextPage = () => (
 
 				<Text>
 					When you{" "}
-					<ChakraLink
-						as={NextLink}
+					<InlineLink
 						href="/"
 						fontWeight="bold"
 						textDecoration="underline"
 						textUnderlineOffset={2}
+						useNextLink
 					>
 						search for an account
-					</ChakraLink>
+					</InlineLink>
 					, your browser makes requests requests to{" "}
-					<ChakraLink
+					<InlineLink
 						href="https://mastodon.social/"
 						fontWeight="bold"
 						textDecoration="underline"
 						textUnderlineOffset={2}
 					>
 						mastodon.social
-					</ChakraLink>
-					&rsquo;s public search endpoint, e.g.{" "}
-					<ChakraLink
+					</InlineLink>
+					{apostrophe}s public search endpoint, e.g.{" "}
+					<InlineLink
 						href="https://mastodon.social/api/v2/search?q=georgetakei"
 						fontWeight="bold"
 						textDecoration="underline"
 						textUnderlineOffset={2}
 					>
 						https://mastodon.social/api/v2/search?q=georgetakei
-					</ChakraLink>
-					. It&rsquo;s the same request that{" "}
-					<ChakraLink
+					</InlineLink>
+					. It{apostrophe}s the same request that{" "}
+					<InlineLink
 						href="https://mastodon.social/search"
 						fontWeight="bold"
 						textDecoration="underline"
 						textUnderlineOffset={2}
 					>
-						mastodon.social&rsquo;s search page
-					</ChakraLink>{" "}
+						mastodon.social{apostrophe}s search page
+					</InlineLink>{" "}
 					uses.
 				</Text>
 
@@ -107,14 +101,14 @@ const HowItWorks: NextPage = () => (
 
 				<Text>
 					Source code is available on GitHub at{" "}
-					<ChakraLink
+					<InlineLink
 						href="https://github.com/patrik-csak/top-mastodon-posts"
 						fontWeight="bold"
 						textDecoration="underline"
 						textUnderlineOffset={2}
 					>
 						patrik-csak / top-mastodon-posts
-					</ChakraLink>{" "}
+					</InlineLink>{" "}
 				</Text>
 			</Flex>
 		</Container>
