@@ -1,5 +1,5 @@
 import { MastodonAccount } from "@/types";
-import useSWR from "swr";
+import useSwrImmutable from "swr/immutable";
 
 // @ts-ignore
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
@@ -14,7 +14,7 @@ export default function useSearchMastodon({
 	type: "accounts";
 }) {
 	const shouldSearch = (query?.length ?? 0) >= 5 && server !== undefined;
-	const { data, error, isLoading } = useSWR<{
+	const { data, error, isLoading } = useSwrImmutable<{
 		accounts: MastodonAccount[];
 		error?: string;
 	}>(
