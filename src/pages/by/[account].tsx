@@ -15,7 +15,6 @@ import {
 	Flex,
 	Heading,
 	Progress,
-	SimpleGrid,
 	Text,
 } from "@chakra-ui/react";
 import { MastodonDisplayName } from "@/components";
@@ -89,11 +88,11 @@ const TopPosts: NextPage = () => {
 						</Alert>
 					)}
 
-					<SimpleGrid
+					<Flex
 						as="ol"
 						aria-busy={isLoadingStatuses}
+						direction="column"
 						gap={8}
-						minChildWidth={400}
 					>
 						{!isLoadingStatuses &&
 							statuses &&
@@ -116,7 +115,7 @@ const TopPosts: NextPage = () => {
 									</CardBody>
 								</Card>
 							))}
-					</SimpleGrid>
+					</Flex>
 				</Flex>
 			</Container>
 		</>
