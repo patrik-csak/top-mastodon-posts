@@ -11,6 +11,8 @@ import {
 import NextLink from "next/link";
 import { appName, separator } from "@/library";
 import { InlineLink } from "@/components";
+import Image from "next/image";
+import logo from "../../public/images/logo.svg";
 
 export default function Layout({ children }: { children: ReactElement }) {
 	const alternateBackgroundColor = useColorModeValue("gray.100", "gray.700");
@@ -25,9 +27,18 @@ export default function Layout({ children }: { children: ReactElement }) {
 			>
 				<Container>
 					<NextLink href="/">
-						<Heading as="h1" size="lg">
-							🔝🦣 {appName}
-						</Heading>
+						<Flex alignItems="center" gap={2}>
+							<Box height={8}>
+								<Image
+									src={logo}
+									alt="Top Mastodon Posts logo"
+									style={{ height: "100%", width: "auto" }}
+								/>
+							</Box>
+							<Heading as="h1" size="lg">
+								{appName}
+							</Heading>
+						</Flex>
 					</NextLink>
 				</Container>
 			</Box>
