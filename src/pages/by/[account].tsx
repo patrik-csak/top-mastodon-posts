@@ -1,14 +1,11 @@
 import { NextPage } from "next";
-import Script from "next/script";
 import { useRouter } from "next/router";
 import { useMastodonAccount, useTopMastodonStatuses } from "@/hooks";
-import { useEffect } from "react";
 import {
 	Alert,
 	AlertDescription,
 	AlertIcon,
 	AlertTitle,
-	Box,
 	Card,
 	CardBody,
 	Container,
@@ -17,7 +14,7 @@ import {
 	Progress,
 	Text,
 } from "@chakra-ui/react";
-import { MastodonDisplayName } from "@/components";
+import { MastodonDisplayName, MastodonStatusEmbed } from "@/components";
 import Head from "next/head";
 import { appName, separator } from "@/library";
 
@@ -36,13 +33,6 @@ const TopPosts: NextPage = () => {
 		topStatuses: statuses,
 	} = useTopMastodonStatuses({ server, username });
 
-	useEffect(() => {
-		if (!isLoadingStatuses && statuses) {
-			// @ts-ignore
-			window?._mastodonTools?.embed();
-		}
-	}, [isLoadingStatuses, statuses]);
-
 	const title = account
 		? [account.display_name, separator, appName].join(" ")
 		: appName;
@@ -56,8 +46,6 @@ const TopPosts: NextPage = () => {
 					content={`Most favo(u)rited Mastodon posts by ${accountName}`}
 				/>
 			</Head>
-
-			<Script src="/scripts/mastodon-embed.js" />
 
 			<Container>
 				<Flex direction="column" gap={8}>
@@ -104,13 +92,11 @@ const TopPosts: NextPage = () => {
 									size="sm"
 								>
 									<CardBody display="flex">
-										<Box
-											allow="fullscreen"
-											as="iframe"
-											border={0}
-											className="mastodon-embed"
-											src={`https://${server}/@${username}/${status.id}/embed`}
-											width="100%"
+										<MastodonStatusEmbed
+											id={status.id}
+											server={server}
+											username={username}
+											style={{width: '100%'}}
 										/>
 									</CardBody>
 								</Card>
