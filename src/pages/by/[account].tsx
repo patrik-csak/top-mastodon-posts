@@ -1,6 +1,6 @@
 import { NextPage } from "next";
 import { useRouter } from "next/router";
-import { useMastodonAccount, useTopMastodonStatuses } from "@/hooks";
+import { useMastodonAccount, useMastodonTopStatuses } from "@/hooks";
 import {
 	Alert,
 	AlertDescription,
@@ -31,7 +31,7 @@ const TopPosts: NextPage = () => {
 		isLoading: isLoadingStatuses,
 		progress: statusesLoadingProgress,
 		topStatuses: statuses,
-	} = useTopMastodonStatuses({ server, username });
+	} = useMastodonTopStatuses({ server, username });
 
 	const title = account
 		? [account.display_name, separator, appName].join(" ")
@@ -96,7 +96,7 @@ const TopPosts: NextPage = () => {
 											id={status.id}
 											server={server}
 											username={username}
-											style={{width: '100%'}}
+											style={{ width: "100%" }}
 										/>
 									</CardBody>
 								</Card>

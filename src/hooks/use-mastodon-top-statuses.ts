@@ -1,7 +1,7 @@
 import { MastodonStatus } from "@/types";
 import useMastodonStatuses from "./use-mastodon-statuses";
 
-export default function useTopMastodonStatuses({
+export default function useMastodonTopStatuses({
 	server,
 	username,
 }: {

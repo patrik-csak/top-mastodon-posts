@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useSearchMastodon } from "@/hooks";
+import { useMastodonSearch } from "@/hooks";
 import Link from "next/link";
 import {
 	Avatar,
@@ -20,7 +20,7 @@ export default function AccountSearch() {
 	const server = "mastodon.social";
 
 	const [query, setQuery] = useState<string | undefined>(undefined);
-	const { data, isLoading } = useSearchMastodon({
+	const { data, isLoading } = useMastodonSearch({
 		query,
 		server,
 		type: "accounts",

@@ -1,4 +1,4 @@
-import useSearchMastodon from "./use-search-mastodon";
+import useMastodonSearch from "./use-mastodon-search";
 
 export default function useMastodonAccount({
 	server,
@@ -7,7 +7,7 @@ export default function useMastodonAccount({
 	server: string | undefined;
 	username: string | undefined;
 }) {
-	const { data, error, isLoading } = useSearchMastodon({
+	const { data, error, isLoading } = useMastodonSearch({
 		query: `@${username}@${server}`,
 		server,
 		type: "accounts",

@@ -1,4 +1,4 @@
 export { default as useMastodonAccount } from "./use-mastodon-account";
+export { default as useMastodonSearch } from "./use-mastodon-search";
 export { default as useMastodonStatuses } from "./use-mastodon-statuses";
-export { default as useSearchMastodon } from "./use-search-mastodon";
-export { default as useTopMastodonStatuses } from "./use-top-mastodon-statuses";
+export { default as useMastodonTopStatuses } from "./use-mastodon-top-statuses";
