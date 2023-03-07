@@ -1,4 +1,4 @@
-import useMastodonSearch from "./use-mastodon-search";
+import { useMastodonSearch } from "@/hooks";
 
 export default function useMastodonAccount({
 	server,

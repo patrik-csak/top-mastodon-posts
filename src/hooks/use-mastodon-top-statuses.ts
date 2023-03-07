@@ -1,5 +1,5 @@
 import { MastodonStatus } from "@/types";
-import useMastodonStatuses from "./use-mastodon-statuses";
+import { useMastodonStatuses } from "@/hooks";
 
 export default function useMastodonTopStatuses({
 	server,
