@@ -1,9 +1,6 @@
 import { MastodonAccount } from "@/types";
 import useSwrImmutable from "swr/immutable";
 
-// @ts-ignore
-const fetcher = (...args) => fetch(...args).then((res) => res.json());
-
 export default function useSearchMastodon({
 	query,
 	server,
@@ -20,17 +17,12 @@ export default function useSearchMastodon({
 	}>(
 		shouldSearch
 			? `https://${server}/api/v2/search?q=${query}&type=${type}`
-			: null,
-		fetcher
+			: null
 	);
 
 	return {
-		data: data?.error ? undefined : data,
-		error: data?.error
-			? new Error(
-					`${server} returned the following error message : '${data.error}'`
-			  )
-			: error,
+		data,
+		error,
 		isLoading,
 	};
 }
