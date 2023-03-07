@@ -1,6 +1,6 @@
-import {ComponentPropsWithoutRef, useEffect, useRef} from "react";
+import { ComponentPropsWithoutRef, useEffect, useRef } from "react";
 
-interface Props extends ComponentPropsWithoutRef<'iframe'> {
+interface Props extends ComponentPropsWithoutRef<"iframe"> {
 	id: string;
 	server: string;
 	username: string;
@@ -9,7 +9,12 @@ interface Props extends ComponentPropsWithoutRef<'iframe'> {
 /**
  * @see https://github.com/mastodon/mastodon/blob/v4.1.0/public/embed.js
  */
-export default function MastodonStatusEmbed({ id, server, username, ...props }: Props) {
+export default function MastodonStatusEmbed({
+	id,
+	server,
+	username,
+	...props
+}: Props) {
 	const ref = useRef<HTMLIFrameElement>(null);
 
 	useEffect(() => {
