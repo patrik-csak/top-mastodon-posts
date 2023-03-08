@@ -1,4 +1,5 @@
 import { ComponentPropsWithoutRef, useEffect, useRef } from "react";
+import { useDebounce, useWindowSize } from "react-use";
 
 interface Props extends ComponentPropsWithoutRef<"iframe"> {
 	id: string;
@@ -16,6 +17,13 @@ export default function MastodonStatusEmbed({
 	...props
 }: Props) {
 	const ref = useRef<HTMLIFrameElement>(null);
+	const { width: windowWidth } = useWindowSize();
+
+	function setHeight() {
+		ref.current?.contentWindow?.postMessage({ id, type: "setHeight" }, "*");
+	}
+
+	useDebounce(setHeight, 500, [windowWidth]);
 
 	useEffect(() => {
 		function handleSetHeight(event: MessageEvent) {
@@ -26,6 +34,8 @@ export default function MastodonStatusEmbed({
 			) {
 				return;
 			}
+
+			console.log(`new height: ${event.data.height}`);
 
 			ref.current.height = event.data.height;
 		}
@@ -38,12 +48,7 @@ export default function MastodonStatusEmbed({
 	return (
 		<iframe
 			allowFullScreen
-			onLoad={({ target: iframe }) =>
-				(iframe as HTMLIFrameElement).contentWindow?.postMessage(
-					{ id, type: "setHeight" },
-					"*"
-				)
-			}
+			onLoad={setHeight}
 			ref={ref}
 			src={`https://${server}/@${username}/${id}/embed`}
 			{...props}
