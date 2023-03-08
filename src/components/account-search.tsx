@@ -6,36 +6,49 @@ import {
 	Card,
 	CardBody,
 	Flex,
+	FormControl,
+	FormErrorMessage,
+	FormLabel,
 	Heading,
 	Input,
 	InputGroup,
 	InputRightElement,
 	Spinner,
-	Stack,
 	Text,
 } from "@chakra-ui/react";
 import { MastodonDisplayName } from "@/components";
+import { useDebounce } from "react-use";
+import { constants } from "@/library";
+
+const mastodonDotSocial = "mastodon.social";
+const { mastodonSearchMinimumQueryLength } = constants;
 
 export default function AccountSearch() {
-	const server = "mastodon.social";
-
 	const [query, setQuery] = useState<string | undefined>(undefined);
+	const [queryDebounced, setQueryDebounced] = useState<string | undefined>(
+		undefined
+	);
+	const isQueryDebouncedTooShort =
+		(queryDebounced?.length || Infinity) < mastodonSearchMinimumQueryLength;
 	const { data, isLoading } = useMastodonSearch({
-		query,
-		server,
+		query: queryDebounced,
+		server: mastodonDotSocial,
 		type: "accounts",
 	});
 
+	useDebounce(
+		() => {
+			setQueryDebounced(query);
+		},
+		500,
+		[query]
+	);
+
 	return (
 		<Flex direction="column" gap={4} width="100%">
-			<form onSubmit={event => event.preventDefault()}>
-				<Stack
-					alignItems={["flex-start", "center"]}
-					direction={["column", "row"]}
-				>
-					<Text as="label" htmlFor="search">
-						Account
-					</Text>
+			<form onSubmit={(event) => event.preventDefault()}>
+				<FormControl isInvalid={isQueryDebouncedTooShort}>
+					<FormLabel>Account</FormLabel>
 					<InputGroup>
 						<Input
 							onInput={(event) =>
@@ -50,14 +63,19 @@ export default function AccountSearch() {
 							</InputRightElement>
 						)}
 					</InputGroup>
-				</Stack>
+					{isQueryDebouncedTooShort && (
+						<FormErrorMessage>
+							Enter at least {mastodonSearchMinimumQueryLength} characters
+						</FormErrorMessage>
+					)}
+				</FormControl>
 			</form>
 
 			{data && (
 				<Flex as="ol" direction="column" gap={4} listStyleType="none">
 					{data.accounts.map((account) => {
 						let [username, accountServer] = account.acct.split("@");
-						accountServer = accountServer ?? server;
+						accountServer = accountServer ?? mastodonDotSocial;
 
 						const accountName = `@${username}@${accountServer}`;
 
