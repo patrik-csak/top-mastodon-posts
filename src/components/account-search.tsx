@@ -28,7 +28,7 @@ export default function AccountSearch() {
 
 	return (
 		<Flex direction="column" gap={4} width="100%">
-			<form>
+			<form onSubmit={event => event.preventDefault()}>
 				<Stack
 					alignItems={["flex-start", "center"]}
 					direction={["column", "row"]}
