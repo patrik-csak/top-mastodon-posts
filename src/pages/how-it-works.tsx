@@ -26,12 +26,12 @@ const HowItWorks: NextPage = () => (
 
 				<Text>
 					For example, for{" "}
-					<InlineLink href="/by/@georgetakei@universeodon.com" useNextLink>
-						@georgetakei@universeodon.com
+					<InlineLink href="/by/@kottke@botsin.space" useNextLink>
+						@kottke@botsin.space
 					</InlineLink>
 					, your browser will make requests to{" "}
-					<InlineLink href="https://universeodon.com/api/v1/accounts/109349320508690443/statuses">
-						https://universeodon.com/api/v1/accounts/109349320508690443/statuses
+					<InlineLink href="https://botsin.space/api/v1/accounts/109478699916859289/statuses">
+						https://botsin.space/api/v1/accounts/109478699916859289/statuses
 					</InlineLink>
 				</Text>
 
@@ -51,8 +51,8 @@ const HowItWorks: NextPage = () => (
 						mastodon.social
 					</InlineLink>
 					{apostrophe}s public search endpoint, e.g.{" "}
-					<InlineLink href="https://mastodon.social/api/v2/search?q=georgetakei">
-						https://mastodon.social/api/v2/search?q=georgetakei
+					<InlineLink href="https://mastodon.social/api/v2/search?q=kottke.org">
+						https://mastodon.social/api/v2/search?q=kottke.org
 					</InlineLink>
 					. It{apostrophe}s the same request that{" "}
 					<InlineLink href="https://mastodon.social/search">
