@@ -21,7 +21,7 @@ const HowItWorks: NextPage = () => (
 					to <Code>{"{server}"}</Code>
 					{apostrophe}s public API to get all public posts by that account,
 					sorts them by <Code>favourite_count</Code> descending, then displays
-					the top 20 most-favo(u)rited posts.
+					the top 20 most-favorited posts.
 				</Text>
 
 				<Text>

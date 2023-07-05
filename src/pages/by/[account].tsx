@@ -43,14 +43,14 @@ const TopPosts: NextPage = () => {
 				<title>{title}</title>
 				<meta
 					name="description"
-					content={`Most favo(u)rited Mastodon posts by ${accountName}`}
+					content={`Most-favorited Mastodon posts by ${accountName}`}
 				/>
 			</Head>
 
 			<Container>
 				<Flex direction="column" gap={8}>
 					<Heading as="h2" size="lg">
-						Most-favo(u)rited Mastodon posts by{" "}
+						Most-favorited Mastodon posts by{" "}
 						{account ? <MastodonDisplayName account={account} /> : accountName}
 						{account ? `(${accountName})` : null}
 					</Heading>
