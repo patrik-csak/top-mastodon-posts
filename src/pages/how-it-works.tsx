@@ -7,12 +7,12 @@ const HowItWorks: NextPage = () => (
 	<>
 		<Container>
 			<Flex direction="column" gap={4}>
-				<Heading as="h2">How It Works</Heading>
+				<Heading as="h2">How it works</Heading>
 
 				<Spacer />
 
 				<Heading as="h3" size="lg">
-					Top Posts
+					Top posts
 				</Heading>
 
 				<Text>
@@ -64,7 +64,7 @@ const HowItWorks: NextPage = () => (
 				<Spacer />
 
 				<Heading as="h3" size="lg">
-					Source Code
+					Source code
 				</Heading>
 
 				<Text>

@@ -65,7 +65,7 @@ export default function Layout({ children }: { children: ReactElement }) {
 						<Show above="sm">{separator}</Show>
 
 						<InlineLink href="/how-it-works" useNextLink>
-							How It Works
+							How it works
 						</InlineLink>
 
 						<Show above="sm">{separator}</Show>
