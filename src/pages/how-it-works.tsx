@@ -26,12 +26,12 @@ const HowItWorks: NextPage = () => (
 
 				<Text>
 					For example, for{" "}
-					<InlineLink href="/by/@kottke@botsin.space" useNextLink>
-						@kottke@botsin.space
+					<InlineLink href="/by/@kottke@mastodon.social" useNextLink>
+						@kottke@mastodon.social
 					</InlineLink>
 					, your browser will make requests to{" "}
-					<InlineLink href="https://botsin.space/api/v1/accounts/109478699916859289/statuses">
-						https://botsin.space/api/v1/accounts/109478699916859289/statuses
+					<InlineLink href="https://mastodon.social/api/v1/accounts/112339386306332928/statuses">
+						https://mastodon.social/api/v1/accounts/112339386306332928/statuses
 					</InlineLink>
 				</Text>
 

@@ -54,7 +54,7 @@ export default function AccountSearch() {
 							onInput={(event) =>
 								setQuery((event.target as HTMLInputElement).value)
 							}
-							placeholder="e.g. @kottke@botsin.space"
+							placeholder="e.g. @kottke@mastodon.social"
 							type="search"
 						/>
 						{isLoading && (
