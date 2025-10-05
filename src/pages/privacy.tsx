@@ -10,7 +10,9 @@ const Privacy: NextPage = () => (
 
 				<Text>
 					Top Mastodon Posts retains no personal information or data. It has no
-					backend, database, caching, logging, or ads.
+					backend, database, caching, logging, or ads. It uses{" "}
+					<InlineLink href="https://usefathom.com">Fathom</InlineLink> for
+					simple, privacy-first analytics.
 				</Text>
 			</Flex>
 		</Container>
