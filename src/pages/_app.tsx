@@ -1,6 +1,5 @@
 import type { AppProps } from "next/app";
 import { ChakraProvider } from "@chakra-ui/react";
-import { Analytics } from "@vercel/analytics/react";
 import { Layout } from "@/components";
 import { swrFetcher, theme } from "@/library";
 import { SWRConfig } from "swr";
@@ -21,8 +20,6 @@ export default function App({ Component, pageProps }: AppProps) {
 					</Layout>
 				</SWRConfig>
 			</ChakraProvider>
-
-			<Analytics />
 		</>
 	);
 }
