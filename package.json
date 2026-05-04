@@ -2,7 +2,6 @@
   "name": "@patrik-csak/top-mastodon-posts",
   "private": true,
   "description": "React app to see a Mastodon account's most-favo(u)rited posts",
-  "homepage": "https://topmastodonposts.com",
   "repository": "github:patrik-csak/top-mastodon-posts",
   "license": "MIT",
   "author": "Patrik Csak <p@trikcsak.com> (https://patrikcsak.com)",
